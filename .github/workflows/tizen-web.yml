@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        app: ['ImageClassificationSingleShot', 'ImageClassificationPipeline', 'ImageClassificationOffloading']
+        app: ['ImageClassificationSingleShot', 'ImageClassificationPipeline', 'ImageClassificationOffloading', 'ImageClassificationOffloadingYolo']
     steps:
     - uses: actions/checkout@v4
       with:
