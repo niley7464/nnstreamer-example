@@ -15,6 +15,7 @@ jobs:
       matrix:
         app: ['ImageClassificationOffloadingYolo']
     steps:
+    - uses: actions/setup-python@v5
     - uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha }}
@@ -27,6 +28,7 @@ jobs:
     - name: Download tflite model
       if: ${{ matrix.app }} == 'ImageClassificationOffloadingYolo'
       run: |
+        pip install ultralytics
         python3 ${{ github.workspace }}/Tizen.web/${{ matrix.app }}/get_model.py
         echo $(ls)
       shell: bash
