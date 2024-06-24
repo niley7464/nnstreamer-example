@@ -32,7 +32,7 @@ jobs:
       run: |
         pip install ultralytics
         python3 ${{ github.workspace }}/Tizen.web/${{ matrix.app }}/get_model.py
-        echo $(ls)
+        mv yolov8s_saved_model/yolov8s_float32.tflite ${{ github.workspace }}/Tizen.web/${{ matrix.app }}/res
       shell: bash
     - name: Build Tizen web application
       shell: bash
