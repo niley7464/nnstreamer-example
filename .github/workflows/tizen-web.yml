@@ -2,7 +2,6 @@ name: Tizen web app build
 
 on:
   push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -14,7 +13,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        app: ['ImageClassificationSingleShot', 'ImageClassificationPipeline', 'ImageClassificationOffloading', 'ImageClassificationOffloadingYolo']
+        app: ['ImageClassificationOffloadingYolo']
     steps:
     - uses: actions/checkout@v4
       with:
@@ -25,6 +24,12 @@ jobs:
         wget -nc -O ${{ github.workspace }}/installer $TIZEN_STUDIO_URL
         chmod a+x ${{ github.workspace }}/installer
         bash ${{ github.workspace }}/installer --accept-license ${{ github.workspace }}/tizen-studio
+    - name: Download tflite model
+      if: ${{ matrix.app }} == 'ImageClassificationOffloadingYolo'
+      run: |
+        python3 ${{ github.workspace }}/Tizen.web/${{ matrix.app }}/get_model.py
+        echo $(ls)
+      shell: bash
     - name: Build Tizen web application
       shell: bash
       run: |
