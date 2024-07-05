@@ -2,7 +2,6 @@ name: Tizen web app build
 
 on:
   push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -52,7 +51,7 @@ jobs:
       if: ${{ matrix.app == 'ImageClassificationOffloading' }}
       run: |
         export PATH=$PATH:${{ github.workspace }}/tizen-studio/tools/ide/bin
-        tizen build-native -a arm -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService
+        tizen build-native -a arm -c llvm -C Debug -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService
         tizen package -t tpk -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug
         tizen package -t wgt -r ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug/EQmf4iSfpX-1.0.0-arm.tpk  -- .buildResult/ImageClassificationOffloading.wgt
     - name: Upload wgt package
