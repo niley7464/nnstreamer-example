@@ -59,7 +59,7 @@ jobs:
         echo $(package-manager-cli.bin show-pkgs)
         tizen build-native -a arm -c llvm -C Debug -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService
         tizen package -t tpk -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug
-        tizen package -t wgt -r ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug/EQmf4iSfpX-1.0.0-arm.tpk  -- .buildResult/ImageClassificationOffloading.wgt
+        tizen package -t wgt -r ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug/EQmf4iSfpX-1.0.0-arm.tpk  --  ${{ github.workspace }}/Tizen.web/${{ matrix.app }}/.buildResult/${{ matrix.app }}.wgt
     - name: Upload wgt package
       uses: actions/upload-artifact@v4
       with:
