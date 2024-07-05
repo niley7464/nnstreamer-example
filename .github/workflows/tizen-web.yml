@@ -6,7 +6,7 @@ on:
     branches: [ main ]
 
 env:
-  TIZEN_STUDIO_URL: "http://download.tizen.org/sdk/Installer/tizen-studio_5.5/web-cli_Tizen_Studio_5.5_ubuntu-64.bin"
+  TIZEN_STUDIO_URL: "http://download.tizen.org/sdk/Installer/tizen-studio_5.6/web-cli_Tizen_Studio_5.6_ubuntu-64.bin"
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
         echo $(tizen list native-project)
         echo $(tizen list rootstrap)
         sudo apt update
-        sudo apt install -y libpython2.7
+        sudo apt install -y libpython2.7 libkf5itemmodels5 libkf5kiowidgets5 libxcb-render-util0 libkchart2 libxcb-image0 libsdl1.2debian libv4l-0 libxcb-randr0 libxcb-shape0 libxcb-icccm4 gettext bridge-utils openvpn
         package-manager-cli.bin install NativeToolchain-Gcc-9.2 NativeCLI TIZEN-8.0 TIZEN-8.0-NativeAppDevelopment
         echo $(package-manager-cli.bin show-pkgs)
         tizen build-native -a arm -c llvm -C Debug -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService
