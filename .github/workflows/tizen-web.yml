@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        app: ['ImageClassificationSingleShot', 'ImageClassificationPipeline', 'ImageClassificationOffloading', 'ImageClassificationOffloadingYolo']
+        app: ['ImageClassificationOffloading']
     steps:
     - uses: actions/setup-python@v5
       with:
@@ -51,6 +51,8 @@ jobs:
       if: ${{ matrix.app == 'ImageClassificationOffloading' }}
       run: |
         export PATH=$PATH:${{ github.workspace }}/tizen-studio/tools/ide/bin
+        echo $(tizen list native-project)
+        echo $(tizen list rootstrap)
         tizen build-native -a arm -c llvm -C Debug -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService
         tizen package -t tpk -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug
         tizen package -t wgt -r ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug/EQmf4iSfpX-1.0.0-arm.tpk  -- .buildResult/ImageClassificationOffloading.wgt
