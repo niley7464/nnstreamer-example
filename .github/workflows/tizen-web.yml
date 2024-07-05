@@ -53,6 +53,7 @@ jobs:
         export PATH=$PATH:${{ github.workspace }}/tizen-studio/tools/ide/bin:${{ github.workspace }}/tizen-studio/package-manager
         echo $(tizen list native-project)
         echo $(tizen list rootstrap)
+        package-manager-cli.bin install NativeToolchain-Gcc-9.2
         echo $(package-manager-cli.bin show-pkgs)
         tizen build-native -a arm -c llvm -C Debug -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService
         tizen package -t tpk -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug
