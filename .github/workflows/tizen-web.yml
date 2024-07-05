@@ -55,7 +55,7 @@ jobs:
         echo $(tizen list rootstrap)
         sudo apt update
         sudo apt install -y libpython2.7
-        package-manager-cli.bin install NativeToolchain-Gcc-9.2
+        package-manager-cli.bin install NativeToolchain-Gcc-9.2 NativeCLI
         echo $(package-manager-cli.bin show-pkgs)
         tizen build-native -a arm -c llvm -C Debug -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService
         tizen package -t tpk -- ${{ github.workspace }}/Tizen.web/ImageClassificationOffloadingService/Debug
